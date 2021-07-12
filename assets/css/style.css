@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h2 {
+    font-size: 2vw;
+    padding: 0.5vw;
+    height: fit-content;
+}
+
+.row-sm{
+    width: 20%;
+}
+
+.row-lg {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5vw;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5vw;
+}
