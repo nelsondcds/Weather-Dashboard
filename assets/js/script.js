@@ -2,12 +2,22 @@ var formEl = document.querySelector("#city-form");
 var buttonEl = document.querySelector("#find-weather");
 var responseContainerEl = document.querySelector(".responsive-container");
 
-var url = "https://api.openbrewerydb.org/breweries?by_page=10&by_dist="
+var url = "https://api.openweathermap.org/data/2.5/onecall?lat="
 
 var buttonHandler = function(event) {
     event.preventDefault();
 
     var addressInput = document.querySelector("input[name='city']").value;
+
+    if (!addressInput) {
+        responseContainerEl.innerHTML = "";
+        var addressAlert = document.createElement("h4");
+        addressAlert.textContent = "You need to enter a city into the search bar!";
+        formEl.setAttribute("search-id","addressAlert");
+        responseContainerEl.appendChild(addressAlert);
+        return false;
+    }
+
     var geourl = "https://www.mapquestapi.com/geocoding/v1/address?key=i59AhjaYZTQaOPj86iKkHTeoACIvMK7I&location=" + addressInput
 
     formEl.reset();
@@ -39,7 +49,7 @@ var brewFetch = function(geourl,url) {
 
         console.log(lat,lng);
 
-        url = url +lat+","+lng ;
+        url = url + lat + "&lon=" + lng + "&units=imperial&appid=3b7aa86a0dc67fb4fff8c7d35644c260";
 
         console.log(url);
 
@@ -50,29 +60,7 @@ var brewFetch = function(geourl,url) {
             .then(function(response){
                 console.log(response);
 
-                var breweries = [];
-
-                for (var i = 0 ; i < response.length ; i++) {
-                    breweries[i] = [];
-
-                    breweries[i][0] = document.createElement("h3");
-
-                    breweries[i][0].textContent = response[i].name;
-
-                    breweries[i][1] = document.createElement("p");
-
-                    breweries[i][1].textContent = response[i].brewery_type.toUpperCase();
-                    
-                    breweries[i][2] = document.createElement("p");
-                    
-                    breweries[i][2].textContent = response[i].street + ", " + response[i].city + ", " + response[i].state + " " + response[i].postal_code;
-
-                    responseContainerEl.appendChild(breweries[i][0]);
-                    
-                    responseContainerEl.appendChild(breweries[i][1]);
-
-                    responseContainerEl.appendChild(breweries[i][2]);
-                }
+                responseContainerEl.value = response.current.temp;
             
             })
 
