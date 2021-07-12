@@ -60,7 +60,7 @@ var brewFetch = function(geourl,url) {
             .then(function(response){
                 console.log(response);
 
-                responseContainerEl.value = response.current.temp;
+                responseContainerEl.textContent = response.current.temp + " °F";
             
             })
 
