@@ -8,7 +8,7 @@ var buttonHandler = function(event) {
     event.preventDefault();
 
     var addressInput = document.querySelector("input[name='city']").value;
-    var geourl = "http://www.mapquestapi.com/geocoding/v1/address?key=i59AhjaYZTQaOPj86iKkHTeoACIvMK7I&location=" + addressInput
+    var geourl = "https://www.mapquestapi.com/geocoding/v1/address?key=i59AhjaYZTQaOPj86iKkHTeoACIvMK7I&location=" + addressInput
 
     formEl.reset();
 
